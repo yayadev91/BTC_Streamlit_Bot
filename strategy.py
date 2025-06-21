@@ -22,6 +22,6 @@ def preprocess(df):
 
 def make_prediction(df, model_path="xgb_model.pkl"):
     model = joblib.load(model_path)
-    X = df[['rsi_lag1 ', 'macd_lag1 ', 'ema_12_lag1 ','ema_26_lag1 ', 'volatility_lag1 ', 'Volume AAPL', 'Close AAPL', 'return ']].iloc[-1:]
+    X = df[['rsi_lag1', 'macd_lag1', 'ema_12_lag1','ema_26_lag1', 'volatility_lag1', 'Volume AAPL', 'Close AAPL', 'return']].iloc[-1:]
     proba = model.predict_proba(X)[0, 1]
     return proba
