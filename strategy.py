@@ -2,6 +2,7 @@ import pandas as pd
 import numpy as np
 import joblib
 import ta
+import streamlit as st
 
 def preprocess(df):
     df = df.copy()
@@ -20,9 +21,7 @@ def preprocess(df):
     df.dropna(inplace=True)
     return df
 
-def make_prediction(df, model_path="xgb_model.pkl"):
-    import streamlit as st
-import joblib
+
 
 def make_prediction(df, model_path="xgb_model.pkl"):
     required_cols = ['rsi_lag1', 'macd_lag1', 'ema_12_lag1', 'ema_26_lag1',
@@ -36,6 +35,4 @@ def make_prediction(df, model_path="xgb_model.pkl"):
     model = joblib.load(model_path)
     X = df[required_cols].iloc[-1:]
     proba = model.predict_proba(X)[0, 1]
-    return proba
-
     return proba
