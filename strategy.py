@@ -10,8 +10,8 @@ def preprocess(df):
     df['macd'] = ta.trend.MACD(close).macd_diff()
     df['ema_12'] = ta.trend.EMAIndicator(close, window=12).ema_indicator()
     df['ema_26'] = ta.trend.EMAIndicator(close, window=26).ema_indicator()
-    df['volatility'] = ta.volatility.AverageTrueRange(
-        high=df.iloc[:,1], low=df.iloc[:,2], close=close).average_true_range()
+    df['volatility'] = df["close"]#ta.volatility.AverageTrueRange(
+        #high=df.iloc[:,1], low=df.iloc[:,2], close=close).average_true_range()
     df['return'] = close.pct_change()
 
     for col in ['rsi', 'macd', 'ema_12', 'ema_26', 'volatility']:
