@@ -10,7 +10,7 @@ st.title("🧠 BTC Machine Learning Paper Trading Bot")
 
 # Refresh every 5 minutes
 time.sleep(1)
-st.experimental_rerun()
+st.rerun()
 
 # === Session state ===
 if "portfolio" not in st.session_state:
