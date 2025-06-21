@@ -1,0 +1,10 @@
+streamlit
+yfinance
+numpy
+pandas
+scikit-learn
+xgboost
+ta
+joblib
+binance
+websocket-client
