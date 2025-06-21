@@ -22,7 +22,6 @@ def preprocess(df):
     return df
 
 
-sqdFf
 def make_prediction(df, model_path="xgb_model.pkl"):
     required_cols = ['rsi_lag1', 'macd_lag1', 'ema_12_lag1', 'ema_26_lag1',
                      'volatility_lag1', 'volume', 'close', 'return']
