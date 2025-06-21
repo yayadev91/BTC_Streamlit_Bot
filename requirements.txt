@@ -8,5 +8,6 @@ xgboost
 ta
 joblib
 binance
+requests
 websocket-client
 cryptography
