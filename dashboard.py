@@ -8,10 +8,11 @@ import time
 st.set_page_config(page_title="BTC Trading Bot", layout="wide")
 st.title("🧠 BTC Machine Learning Paper Trading Bot")
 
-# Refresh every 5 minutes
-time.sleep(1)
-st.rerun()
-
+if "last_run" not in st.session_state:
+    st.session_state.last_run = time.time()
+elif time.time() - st.session_state.last_run > 300:  # 5 minutes = 300s
+    st.session_state.last_run = time.time()
+    st.rerun()
 # === Session state ===
 if "portfolio" not in st.session_state:
     st.session_state.portfolio = PaperPortfolio()
