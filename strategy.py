@@ -30,6 +30,13 @@ def make_prediction(df, model_path="xgb_model.pkl"):
     if missing:
         st.error(f"⚠️ Colonnes manquantes pour la prédiction : {missing}")
         return None
+    # Renommer les colonnes du df pour matcher les noms d'entraînement
+    df_renamed = df.rename(columns={
+    'volume': 'Volume AAPL',
+    'close': 'Close AAPL'
+    })
+
+    X = df_renamed[expected_features].iloc[-1:]
 
     model = joblib.load(model_path)
     X = df[required_cols].iloc[-1:]
