@@ -20,7 +20,8 @@ if "portfolio" not in st.session_state:
 # === Fetch data ===
 df = get_binance_ohlcv()
 df = preprocess(df)
-price = df.loc[df.index[-1], 'Close']
+print(len(df))
+#price = df.loc[df.index[-1], 'Close']
 timestamp = datetime.now().strftime("%Y-%m-%d %H:%M")
 
 # === Predict ===
