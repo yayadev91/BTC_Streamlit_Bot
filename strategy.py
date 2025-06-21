@@ -5,13 +5,14 @@ import ta
 
 def preprocess(df):
     df = df.copy()
-    df['rsi'] = ta.momentum.RSIIndicator(df['close']).rsi()
-    df['macd'] = ta.trend.MACD(df['close']).macd_diff()
-    df['ema_12'] = ta.trend.EMAIndicator(df['close'], window=12).ema_indicator()
-    df['ema_26'] = ta.trend.EMAIndicator(df['close'], window=26).ema_indicator()
+    close = df['close'].squeeze()
+    df['rsi'] = ta.momentum.RSIIndicator(close).rsi()
+    df['macd'] = ta.trend.MACD(close).macd_diff()
+    df['ema_12'] = ta.trend.EMAIndicator(close, window=12).ema_indicator()
+    df['ema_26'] = ta.trend.EMAIndicator(close, window=26).ema_indicator()
     df['volatility'] = ta.volatility.AverageTrueRange(
-        high=df['high'], low=df['low'], close=df['close']).average_true_range()
-    df['return'] = df['close'].pct_change()
+        high=df.iloc[:,1], low=df.iloc[:,2], close=close).average_true_range()
+    df['return'] = close.pct_change()
 
     for col in ['rsi', 'macd', 'ema_12', 'ema_26', 'volatility']:
         df[f'{col}_lag1'] = df[col].shift(1)
