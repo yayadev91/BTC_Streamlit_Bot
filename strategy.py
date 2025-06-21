@@ -31,6 +31,8 @@ def make_prediction(df, model_path="xgb_model.pkl"):
         st.error(f"⚠️ Colonnes manquantes pour la prédiction : {missing}")
         return None
     # Renommer les colonnes du df pour matcher les noms d'entraînement
+    expected_features = ['ema_26_lag1', 'rsi_lag1', 'ema_12_lag1', 'macd_lag1', 'volatility_lag1', 'return', 'Volume AAPL', 'Close AAPL']
+
     df_renamed = df.rename(columns={
     'volume': 'Volume AAPL',
     'close': 'Close AAPL'
